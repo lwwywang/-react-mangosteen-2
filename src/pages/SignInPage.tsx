@@ -3,11 +3,12 @@ import { Gradient } from '../components/Gradient'
 import { Icon } from '../components/Icon'
 import { TopNav } from '../components/TopNav'
 import { useSignInStore } from '../stores/useSignInStore'
-import { validate } from '../lib/validate'
+import { hasError, validate } from '../lib/validate'
+import { ajax } from '../lib/ajax'
 
 export const SignInPage: React.FC = () => {
     const { data, error, setData, setError } = useSignInStore()
-    const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
         // console.log(data)
         const error = validate(data, [
@@ -17,6 +18,12 @@ export const SignInPage: React.FC = () => {
             { key: 'code', type: 'length', min: 6, max: 6, message: '验证码必须是6个字符' },
         ])
         setError(error)
+        if (!hasError(error)) {
+            await ajax.post('/api/v1/session', data)
+            // TODO
+            // 保存 JWT 作为登录凭证
+            nav('/home')
+        }
     }
 
     return (
@@ -51,3 +58,7 @@ export const SignInPage: React.FC = () => {
         </div>
     )
 }
+function nav(arg0: string) {
+    throw new Error('Function not implemented.')
+}
+
