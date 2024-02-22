@@ -1,4 +1,5 @@
 import type { FormEventHandler } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Gradient } from '../components/Gradient'
 import { Icon } from '../components/Icon'
 import { TopNav } from '../components/TopNav'
@@ -8,6 +9,7 @@ import { ajax } from '../lib/ajax'
 
 export const SignInPage: React.FC = () => {
     const { data, error, setData, setError } = useSignInStore()
+    const nav = useNavigate()
     const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault()
         // console.log(data)
@@ -58,7 +60,5 @@ export const SignInPage: React.FC = () => {
         </div>
     )
 }
-function nav(arg0: string) {
-    throw new Error('Function not implemented.')
-}
+
 
