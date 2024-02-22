@@ -12,6 +12,8 @@
         "caughtErrors": "none"
       }
     ],
-    "@typescript-eslint/comma-dangle": "off"
+    "@typescript-eslint/comma-dangle": "off",
+    "indent": "off",
+    "@typescript-eslint/indent": "off"
   }
 }
