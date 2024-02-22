@@ -21,7 +21,7 @@ export const ItemsList: React.FC<Props> = () => {
     // send a request & get data & error
     getKey,
     async path => (await ajax.get<Resources<Item>>(path)).data,
-    // { revalidateFirstPage: false }
+    { revalidateFirstPage: false }
   )
 
   const onLoadMore = () => {
